@@ -1,0 +1,33 @@
+{%extends 'main/base.html'%}
+
+
+
+{%block title1%}
+{{username}}
+{%endblock%}
+
+
+{%block content%}
+
+<form method="POST" action="#">
+
+ <!-- Using action='#' is often used when you want to submit the form to the same page and handle the form submission logic in the same view that renders the form. This is useful for handling form submissions in the same view that displays the form, without the need to redirect the user to a different URL. -->
+    {%csrf_token%}
+
+    {%for activity in username.todolist.all%}
+    <div class="input-group mb-3">
+        <a href="/activity/{{activity.name}}" style="color: black;">{{activity.name}}</a>
+    </div>
+    {%endfor%}
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button type="submit" name="newToDoList" value="newToDoList" class="btn btn-success">Add Activity</button>
+        </div>
+        <input type="text" name="newActivity">
+    </div>
+        <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+    </form>
+
+
+{%endblock%}
