@@ -4,6 +4,7 @@ from .forms import RegisterForm
 from .models import ToDoList
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.views.generic import DetailView
 
 
 # Create your views here.
@@ -13,7 +14,7 @@ def home(request):
 
 @login_required()
 def activity(request, activity_id):
-    return render(request, "main/activity.html", {})
+    return render(request, "main/post_detail.html", {})
 
 
 @login_required
@@ -42,3 +43,8 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, "register/register.html", {"form": form})
+
+
+class ToDoListDetails(DetailView):
+    model = ToDoList
+
