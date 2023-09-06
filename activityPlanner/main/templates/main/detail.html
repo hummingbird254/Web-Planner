@@ -3,7 +3,7 @@
 
 
 {%block title1%}
-{{username | upper}}'s Space
+{{activity}}
 {%endblock%}
 
 
@@ -17,15 +17,14 @@
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <button type="submit" name="newToDoList" value="newToDoList" class="btn btn-success">Add Activity</button>
+            <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add Item</button>
         </div>
-        <input type="text" name="newActivity">
+        <input type="text" name="newItemInput">
     </div>
 
-    {%for activity in username.todolist.all%}
+    {%for item in activity.item_set.all%}
     <div class="input-group mb-3">
-        {{ forloop.counter }}.<a href="{% url 'detail' activity.id %}" style="color: black; text-decoration: none;" onmouseover="this.style.color='white';" onmouseout="this.style.color='black';">{{activity.name}}</a>
-
+        {{ forloop.counter }}.{{item.text}}
     </div>
     {%endfor%}
 
