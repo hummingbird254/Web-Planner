@@ -1,8 +1,14 @@
 {%extends 'main/base.html'%}
 
 {%block a%}
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    {%if user.is_authenticated%}
+       <a href="/logout">Logout</a>
+        <a href="/user">Your Space</a>
+    {%else%}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    {%endif%}
+
 {%endblock%}
 
 {%block title1%}
